@@ -1,0 +1,2 @@
+2023-10-10 11:55:53,056 - root - INFO - Visited URL: {'_id': ObjectId('6524ec9adc1e70b6b860054a')}
+2023-10-10 11:55:53,056 - root - ERROR - An error occurred: 'dict' object has no attribute 'content'

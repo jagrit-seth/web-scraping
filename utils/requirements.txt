@@ -1,0 +1,5 @@
+bs4==0.0.1
+boto3==1.28.61
+requests==2.31.0
+lxml==4.9.
+mongoengine==0.27.0

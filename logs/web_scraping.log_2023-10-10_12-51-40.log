@@ -1,0 +1,2 @@
+2023-10-10 12:51:40,648 - root - INFO - Visited URL: None
+2023-10-10 12:51:40,648 - root - ERROR - An error occurred: 'NoneType' object has no attribute 'content'
