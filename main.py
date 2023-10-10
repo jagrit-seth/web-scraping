@@ -1,9 +1,9 @@
 import boto3
-import extract_media_urls
-import upload_to_S3
+import tasks.extract_media_urls as extract_media_urls
+import tasks.upload_to_S3 as upload_to_S3
 import os
 from dotenv import load_dotenv
-from logger import configure_logger
+from utils.logger import configure_logger
 
 load_dotenv()
 
