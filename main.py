@@ -13,15 +13,17 @@ aws_region = os.getenv("AWS_DEFAULT_REGION")
 
 logger = configure_logger("web_scraping.log")
 
+
 def main():
     media_urls = extract_media_urls.extract_media_urls()
     if media_urls:
         s3 = boto3.client('s3',
-                  aws_access_key_id=aws_access_key_id,
-                  aws_secret_access_key=aws_secret_access_key,
-                  region_name=aws_region)
+                          aws_access_key_id=aws_access_key_id,
+                          aws_secret_access_key=aws_secret_access_key,
+                          region_name=aws_region)
         s3_bucket = 'test-web-scraping'
         upload_to_S3.upload_to_S3(s3, media_urls, s3_bucket)
+
 
 if __name__ == "__main__":
     main()

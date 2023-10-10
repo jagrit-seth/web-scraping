@@ -1,24 +1,29 @@
 import mongoengine
+from bson.objectid import ObjectId
+from mongoengine import Document, ObjectIdField, DictField, StringField, BooleanField, EmbeddedDocument, \
+    EmbeddedDocumentField
 
-class YourDocument(mongoengine.Document):
-    id = mongoengine.StringField()
-    source = mongoengine.StringField()
-    description = mongoengine.StringField()
-    is_active = mongoengine.BooleanField()
+
+class YourDocument(Document):
+    class Description(EmbeddedDocument):
+        description = StringField()
+        type = StringField()
+        url = StringField()
+
+    _id = ObjectIdField(required=True, default=ObjectId)
+    source = EmbeddedDocumentField(Description)
+    is_active = BooleanField()
+
+    meta = {
+        'collection': 'Test'
+    }
+
 
 def get_source_url():
     mongoengine.connect("faas", host="mongodb://localhost:27017")
-    document = YourDocument.objects(id="6524ec9adc1e70b6b860054a").first()
+    documents = YourDocument.objects(is_active=True)
+    urls = [doc.source.url for doc in documents]
+    return urls
 
-    if document:
-        source_url = document.source
-        is_active = document.is_active
-
-        if is_active:
-            return source_url
-        else:
-            print("The document is not active.")
-    else:
-        print("Document not found.")
 
 source_url = get_source_url()
